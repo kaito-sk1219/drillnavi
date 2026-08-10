@@ -1,19 +1,19 @@
 # drillnavi
 
-[![CI](https://github.com/kaito-sk1219/prog-assignment/actions/workflows/ci.yml/badge.svg)](https://github.com/kaito-sk1219/prog-assignment/actions/workflows/ci.yml)
+[![CI](https://github.com/kaito-sk1219/drillnavi/actions/workflows/ci.yml/badge.svg)](https://github.com/kaito-sk1219/drillnavi/actions/workflows/ci.yml)
 
 算数の反復学習を管理するCLIツールです。ページ数と締切から日割りノルマを計算し、四則演算のドリルを対話形式で出題、学習履歴をグラフ付きレポートにまとめます。
 
 ## インストール
 
 ```bash
-uv tool install drillnavi
+uv tool install git+https://github.com/kaito-sk1219/drillnavi.git
 ```
 
 または開発用にクローンして実行:
 
 ```bash
-git clone https://github.com/kaito-sk1219/prog-assignment.git drillnavi
+git clone https://github.com/kaito-sk1219/drillnavi.git
 cd drillnavi
 uv sync
 ```
