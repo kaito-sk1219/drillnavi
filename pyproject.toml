@@ -10,6 +10,10 @@ dependencies = [
     "typer>=0.27.1",
 ]
 
+[project.urls]
+Homepage = "https://github.com/kaito-sk1219/drillnavi"
+Repository = "https://github.com/kaito-sk1219/drillnavi"
+
 [project.scripts]
 drillnavi = "drillnavi.cli:main"
 
