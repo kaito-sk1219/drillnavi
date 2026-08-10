@@ -14,6 +14,7 @@ from drillnavi.core.difficulty import adjust_difficulty
 from drillnavi.core.planning import calculate_daily_quota
 from drillnavi.core.problems import generate_problem
 from drillnavi.models import ChildData, DrillRecord, Plan
+from drillnavi.report import DEFAULT_REPORT_DIR, generate_report_pdf
 
 app = typer.Typer(help="drillnavi: 算数の反復学習を管理するCLI")
 plan_app = typer.Typer(help="学習計画(ページ配分)の管理")
@@ -173,6 +174,22 @@ def _run_fun_session(child: ChildData, count: int) -> None:
         )
 
     typer.echo(f"お疲れさまでした! 最終コンボ {combo} 「{title}」")
+
+
+@app.command()
+def report(
+    name: str = typer.Option(..., "--name", help="児童名"),
+) -> None:
+    """学習履歴を集計し、進捗グラフ付きレポートをPDFで出力する。"""
+    data = storage.load_data()
+    child = data.children.get(name)
+    if child is None or not child.drill_history:
+        typer.echo(f"{name} さんのドリル履歴がありません。")
+        raise typer.Exit(code=1)
+
+    output_path = DEFAULT_REPORT_DIR / f"report_{name}.pdf"
+    generate_report_pdf(child, output_path)
+    typer.echo(f"レポートを出力しました: {output_path}")
 
 
 def main() -> None:
